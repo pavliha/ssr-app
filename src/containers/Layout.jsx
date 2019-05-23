@@ -1,4 +1,6 @@
 import React from 'react'
+import { hot } from 'react-hot-loader/root'
+import { Helmet } from 'react-helmet'
 
 class Layout extends React.Component {
 
@@ -11,7 +13,10 @@ class Layout extends React.Component {
 
     return (
       <div>
-        render client
+        <Helmet>
+          <title>hello world</title>
+        </Helmet>
+        render asasdasd asd asd asd
       </div>
     )
 
@@ -20,4 +25,4 @@ class Layout extends React.Component {
 
 Layout.propTypes = {}
 
-export default Layout
+export default hot(Layout)

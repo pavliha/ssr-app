@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isProd, isDevelop } = require('./lib/Stage')
+const Loadable = require('@loadable/webpack-plugin')
 
 const universal = {
   devtool: 'source-map',
@@ -15,6 +16,17 @@ const universal = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
+    alias: {
+      src: path.resolve(__dirname, './src'),
+      api: path.resolve(__dirname, './src/api'),
+      assets: path.resolve(__dirname, './src/assets'),
+      constants: path.resolve(__dirname, './src/constants'),
+      components: path.resolve(__dirname, './src/components'),
+      containers: path.resolve(__dirname, './src/containers'),
+      services: path.resolve(__dirname, './src/services'),
+      shapes: path.resolve(__dirname, './src/shapes'),
+      utils: path.resolve(__dirname, './src/utils')
+    }
   },
 
   context: __dirname,
@@ -160,6 +172,15 @@ const client = merge(universal, {
     publicPath: '/',
     filename: `client.js`,
   },
+
+  plugins: [
+    ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
+
+    /**
+     * Places loadable stats to public folder. So it would know what chunks to use
+     */
+    new Loadable({ writeToDisk: true })
+  ]
 })
 
 module.exports = [server, client]
