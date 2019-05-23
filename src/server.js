@@ -6,7 +6,7 @@ import App from './containers/Layout'
 export default () => async (request, response) => {
   response.send(renderToStaticMarkup(
     <Html
-      isSsr={!module.hot}
+      isSsr={process.env.NODE_ENV === 'production'}
       root={<App />}
     />))
 }

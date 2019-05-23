@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isProd, isDevelop } = require('./lib/Stage')
 const Loadable = require('@loadable/webpack-plugin')
+const Clean = require('clean-webpack-plugin')
 
 const universal = {
   devtool: 'source-map',
@@ -107,7 +108,6 @@ const universal = {
   },
 
   plugins: [
-
     /**
      * Don't know what is's doing. Please contribute and write explanation comment :)
      */
@@ -159,10 +159,8 @@ const client = merge(universal, {
   target: 'web',
 
   entry: {
-    client: isDevelop ? [
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './src/client.js',
-    ] : [
+    client: [
+      ...(isDevelop ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'] : []),
       './src/client.js',
     ],
   },
@@ -175,6 +173,12 @@ const client = merge(universal, {
 
   plugins: [
     ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
+    /**
+     * Cleans up everything before placing new build
+     */
+    new Clean('./public', {
+      root: path.resolve(__dirname, './dist'),
+    }),
 
     /**
      * Places loadable stats to public folder. So it would know what chunks to use

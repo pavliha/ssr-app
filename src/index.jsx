@@ -13,8 +13,6 @@ export default ({ root, isSsr }) => {
 
   const [jsx, extractor] = withCodeSplitting(jsx)
 
-  console.log({ isSsr })
-
   return (
     <html {...htmlAttrs}>
     <head>
