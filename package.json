@@ -12,7 +12,9 @@
   "scripts": {
     "start": "node index.js --stage=develop",
     "test": "node index.js --stage=test",
-    "prod": "node index.js --stage=prod"
+    "prod": "node index.js --stage=prod",
+    "start:inspect": "node --inspect-brk index.js --stage=develop",
+    "prod:inspect": "node --inspect index.js --stage=prod"
   },
   "dependencies": {
     "@adonisjs/websocket-client": "^1.0.9",
