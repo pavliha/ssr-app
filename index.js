@@ -2,12 +2,14 @@ require('module-alias/register')
 require('@babel/register')
 require('@babel/polyfill')
 const { config: bootDotEnv } = require('dotenv')
-const App = require('./lib/App')
+const Server = require('./lib/Server')
 const Stage = require('./lib/Stage')
 const webpackConfig = require('./webpack.config')
 
 bootDotEnv()
 
-const app = new App(webpackConfig)
+const server = new Server(webpackConfig)
 
-app.start(Stage)
+server
+  .start(Stage)
+  .catch(console.error)
