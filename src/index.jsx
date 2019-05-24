@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { renderToString } from 'react-dom/server'
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
 import withCodeSplitting from '../lib/withCodeSplitting'
 
 const Body = ({ children, ...props }) =>
@@ -8,10 +9,10 @@ const Body = ({ children, ...props }) =>
 
 export default ({ root, isSsr }) => {
   const helmet = Helmet.renderStatic()
+  const sheets = new ServerStyleSheets()
   const htmlAttrs = helmet.htmlAttributes.toComponent()
   const bodyAttrs = helmet.bodyAttributes.toComponent()
-
-  const [jsx, extractor] = withCodeSplitting(jsx)
+  const [jsx, extractor] = withCodeSplitting(sheets.collect(root))
 
   return (
     <html {...htmlAttrs}>
@@ -23,8 +24,9 @@ export default ({ root, isSsr }) => {
     </head>
     <Body {...bodyAttrs}>
       {`
+       <style id="jss-server-side">${sheets.toString()}</style>
        ${isSsr
-        ? `<div id="root">${renderToString(root)}</div>`
+        ? `<div id="root">${renderToString(jsx)}</div>`
         : `<div id="root" />`
         }
         ${extractor.getScriptTags()} 

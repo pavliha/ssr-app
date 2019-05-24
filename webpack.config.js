@@ -41,6 +41,18 @@ const universal = {
    * TerserPlugin. A better minimizer that supports ES6
    */
   optimization: {
+    namedModules: true,
+    namedChunks: true,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
+        },
+      },
+    },
     minimizer: [
       new TerserPlugin({
         cache: true,
@@ -160,6 +172,7 @@ const client = merge(universal, {
 
   entry: {
     client: [
+      '@babel/polyfill',
       ...(isDevelop ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'] : []),
       './src/client.js',
     ],
