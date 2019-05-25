@@ -1,10 +1,10 @@
 import React from 'react'
 import loadable from '@loadable/component'
 import { Route, Switch } from 'react-router-dom'
-import { AuthGate } from 'components'
+import { AuthGate, Loading } from 'components'
 
-const IndexScene = loadable(() => import('./IndexScene'))
-const AuthLayout = loadable(() => import('./@auth/AuthLayout'))
+const IndexScene = loadable(() => import('./IndexScene'), { fallback: <Loading /> })
+const AuthLayout = loadable(() => import('./@auth/AuthLayout'), { fallback: <Loading /> })
 const InviteLayout = loadable(() => import('./@invite/InviteLayout'))
 const HomeScene = loadable(() => import('./@home/HomeScene'))
 const RoomLayout = loadable(() => import('./@room/RoomLayout'))
@@ -16,7 +16,7 @@ const Layout = () =>
     <Route path="/auth" component={props => <AuthLayout {...props} />} />
     <Route path="/invite" component={props => <InviteLayout {...props} />} />
     <AuthGate path="/home" component={props => <HomeScene {...props} />} />
-    <AuthGate path="/room" component={props => <RoomLayout {...props} />} />˚
+    <AuthGate path="/room" component={props => <RoomLayout {...props} />} />
     <AuthGate path="/profile" component={props => <ProfileLayout {...props} />} />
   </Switch>
 

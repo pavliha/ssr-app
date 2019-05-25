@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import theme from './styles/theme'
 import Layout from 'containers/Layout'
 import store from 'src/redux/store'
+import 'assets/index.css'
 
 const App = () => {
   React.useEffect(() => {
