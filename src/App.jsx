@@ -1,10 +1,8 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { ThemeProvider } from '@material-ui/styles'
-import { Provider } from 'react-redux'
 import theme from './styles/theme'
 import Layout from 'containers/Layout'
-import store from 'src/redux/store'
 import 'assets/index.css'
 
 const App = () => {
@@ -14,11 +12,9 @@ const App = () => {
   }, [])
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Layout />
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Layout />
+    </ThemeProvider>
   )
 }
 export default hot(App)

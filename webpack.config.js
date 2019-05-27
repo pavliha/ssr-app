@@ -136,9 +136,9 @@ const client = merge(universal, {
   plugins: [
     ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
     ...(isTesting ? [new BundleAnalyzerPlugin()] : []),
-    new Loadable({ writeToDisk: true }),
     new Clean('./public', { root: path.resolve(__dirname, './dist') }),
     new Copy([{ from: './src/assets', to: './' }]),
+    new Loadable({ writeToDisk: true }),
   ]
 })
 
