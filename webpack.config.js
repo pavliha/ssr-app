@@ -11,7 +11,7 @@ const Clean = require('clean-webpack-plugin')
 const Copy = require('copy-webpack-plugin')
 
 const universal = {
-  devtool: isDevelop ? 'cheap-module-eval-source-map' : 'source-map',
+  devtool: false,
   mode: isDevelop ? 'development' : 'production',
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
@@ -25,7 +25,8 @@ const universal = {
       containers: path.resolve(__dirname, './src/containers'),
       services: path.resolve(__dirname, './src/services'),
       shapes: path.resolve(__dirname, './src/shapes'),
-      utils: path.resolve(__dirname, './src/utils')
+      utils: path.resolve(__dirname, './src/utils'),
+      '@loadable/component': path.resolve(__dirname, './modules/loadable/component/src/index.js')
     }
   },
   context: __dirname,

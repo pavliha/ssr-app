@@ -9,10 +9,12 @@ console.log(IndexScene, TestScene)
 
 class Layout extends Component {
   render() {
-    return <Switch>
-      <Route exact path="/" component={props => <IndexScene {...props} />} />
-      <Route path="/test" component={props => <TestScene {...props} />} />
-    </Switch>
+    return (
+      <Switch>
+        <Route exact path="/" component={props => <IndexScene {...props} />} />
+        <Route path="/test" component={props => <TestScene {...props} />} />
+      </Switch>
+    )
   }
 }
 
