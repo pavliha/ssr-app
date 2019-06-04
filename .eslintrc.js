@@ -9,7 +9,6 @@ module.exports = {
     }],
     'jsx-quotes': ['error', 'prefer-double'],
     'comma-dangle': 0,
-    'newline-before-return': ['error'],
     'no-trailing-spaces': 0,
     'padded-blocks': 0,
     'camelcase': 0,
@@ -18,7 +17,7 @@ module.exports = {
   'globals': {
     'isServer': true,
     'isClient': true,
-    'store': true
+    'store': true,
   },
   'env': {
     'jasmine': true,

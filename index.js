@@ -1,6 +1,3 @@
-require('module-alias/register')
-require('@babel/register')
-require('@babel/polyfill')
 const { config: bootDotEnv } = require('dotenv')
 const Server = require('./lib/Server')
 const Stage = require('./lib/Stage')
