@@ -13,6 +13,15 @@ const Copy = require('copy-webpack-plugin')
 const universal = {
   devtool: false,
   mode: isDevelop ? 'development' : 'production',
+
+  stats: {
+    chunks: false, // Makes the build much quieter
+    colors: true, // Shows colors in the console
+    chunkGroups: false,
+    chunkModules: false,
+    modules: false,
+  },
+
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
@@ -27,7 +36,7 @@ const universal = {
       services: path.resolve(__dirname, './src/services'),
       shapes: path.resolve(__dirname, './src/shapes'),
       utils: path.resolve(__dirname, './src/utils'),
-    }
+    },
   },
   context: __dirname,
   performance: {
@@ -74,7 +83,7 @@ const universal = {
       filename: isDevelop ? 'styles/[name].css' : 'styles/[name].[contenthash].css',
       chunkFilename: isDevelop ? '[id].css' : '[id].[contenthash].css',
     }),
-  ]
+  ],
 }
 
 const server = merge(universal, {
@@ -84,13 +93,13 @@ const server = merge(universal, {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'server.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
       { test: /\.css$/, loader: 'ignore-loader' },
-      { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'ignore-loader' }
-    ]
+      { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'ignore-loader' },
+    ],
   },
   /**
    * LimitChunkCountPlugin is required.
@@ -132,7 +141,7 @@ const client = merge(universal, {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
@@ -140,7 +149,7 @@ const client = merge(universal, {
     new Clean('./public', { root: path.resolve(__dirname, './dist') }),
     new Copy([{ from: './src/assets', to: './' }]),
     new Loadable({ writeToDisk: true }),
-  ]
+  ],
 })
 
 module.exports = [server, client]
