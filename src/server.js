@@ -1,33 +1,45 @@
 import React from 'react'
-import html from './index'
+import { renderToString } from 'react-dom/server'
+import { ServerStyleSheets } from '@material-ui/styles'
 import { StaticRouter } from 'react-router-dom'
-import App from './App'
 import { ChunkExtractorManager } from '@loadable/server'
-import path from 'path'
-import Loadable from '../lib/Loadable'
+import Assets from 'lib/Assets'
+import Loadable from 'lib/Loadable'
+import App from './App'
 
-const ServerApp = ({ location, extractor, children }) => {
-  const context = {}
+const html = ({ root, assets }) => {
+  const sheets = new ServerStyleSheets()
+  const jsxWithStyles = sheets.collect(root)
 
-  return (
-    <ChunkExtractorManager extractor={extractor}>
-      <StaticRouter context={context} location={location}>
-        {children}
-      </StaticRouter>
-    </ChunkExtractorManager>
-  )
+  return `
+    <html lang="ru">
+    <head>
+      ${assets.title}
+      ${assets.meta}
+      ${assets.links}
+      ${assets.styles}
+      <style id="jss-server-side">${sheets.toString()}</style>
+    </head>
+    <body>
+       <div id="root">${renderToString(jsxWithStyles)}</div>
+       ${assets.scripts} 
+    </body>
+    </html>
+  `
 }
 
 export default () => async (request, response) => {
-  const isSsr = process.env.NODE_ENV === 'production'
-  const statsFile = path.resolve('./dist/public/loadable-stats.json')
-  const { extractor, scripts, styles } = new Loadable({ isSsr, statsFile })
+  const context = {}
+  const loadable = new Loadable('./dist/public/loadable-stats.json')
+  const assets = new Assets(loadable)
 
-  const component = (
-    <ServerApp extractor={extractor} location={request.url}>
-      <App />
-    </ServerApp>
+  const root = (
+    <ChunkExtractorManager extractor={loadable.extractor}>
+      <StaticRouter context={context} location={request.url}>
+        <App />
+      </StaticRouter>
+    </ChunkExtractorManager>
   )
 
-  response.send(html({ component, styles, scripts, isSsr }))
+  response.send(html({ root, assets }))
 }

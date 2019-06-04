@@ -5,8 +5,6 @@ import { Route, Switch } from 'react-router-dom'
 const IndexScene = loadable(() => import('./IndexScene'), { fallback: <div>loading</div> })
 const TestScene = loadable(() => import('./TestScene'), { fallback: <div>loading</div> })
 
-console.log(IndexScene, TestScene)
-
 class Layout extends Component {
   render() {
     return (

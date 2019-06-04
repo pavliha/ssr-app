@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { object, func, shape } from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class LandingScene extends Component {

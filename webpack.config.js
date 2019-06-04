@@ -17,6 +17,7 @@ const universal = {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
     alias: {
+      lib: path.resolve(__dirname, './lib'),
       src: path.resolve(__dirname, './src'),
       api: path.resolve(__dirname, './src/api'),
       assets: path.resolve(__dirname, './src/assets'),
@@ -26,7 +27,6 @@ const universal = {
       services: path.resolve(__dirname, './src/services'),
       shapes: path.resolve(__dirname, './src/shapes'),
       utils: path.resolve(__dirname, './src/utils'),
-      '@loadable/component': path.resolve(__dirname, './modules/loadable/component/src/index.js')
     }
   },
   context: __dirname,

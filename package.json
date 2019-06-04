@@ -55,7 +55,7 @@
     "react-google-login": "^5.0.2",
     "react-google-maps": "^9.4.5",
     "react-helmet": "^5.2.0",
-    "react-hot-loader": "^4.7.0",
+    "react-hot-loader": "^4.9.0",
     "react-icon-loader": "^0.6.0",
     "react-jss": "^8.6.1",
     "react-moment": "^0.8.4",

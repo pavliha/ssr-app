@@ -1,6 +1,6 @@
 import React from 'react'
-import { hot } from 'react-hot-loader/root'
 import { ThemeProvider } from '@material-ui/styles'
+import init from 'lib/init'
 import theme from './styles/theme'
 import Layout from 'containers/Layout'
 import 'assets/index.css'
@@ -17,4 +17,5 @@ const App = () => {
     </ThemeProvider>
   )
 }
-export default hot(App)
+
+export default init(App)
