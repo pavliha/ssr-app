@@ -1,14 +1,16 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
-const Css = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isDevelop, isTesting } = require('./lib/Stage')
 const Loadable = require('@loadable/webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const Clean = require('clean-webpack-plugin')
-const Copy = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const universal = {
   devtool: false,
@@ -34,6 +36,7 @@ const universal = {
       components: path.resolve(__dirname, './src/components'),
       containers: path.resolve(__dirname, './src/containers'),
       services: path.resolve(__dirname, './src/services'),
+      config: path.resolve(__dirname, './src/config'),
       shapes: path.resolve(__dirname, './src/shapes'),
       utils: path.resolve(__dirname, './src/utils'),
     },
@@ -79,9 +82,12 @@ const universal = {
     ],
   },
   plugins: [
-    new Css({
+    new MiniCssExtractPlugin({
       filename: isDevelop ? 'styles/[name].css' : 'styles/[name].[contenthash].css',
       chunkFilename: isDevelop ? '[id].css' : '[id].[contenthash].css',
+    }),
+    new LodashModuleReplacementPlugin({
+      shorthands: true,
     }),
   ],
 }
@@ -101,10 +107,6 @@ const server = merge(universal, {
       { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'ignore-loader' },
     ],
   },
-  /**
-   * LimitChunkCountPlugin is required.
-   * Without it dynamic imports would also split server build
-   */
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
   ],
@@ -115,7 +117,6 @@ const client = merge(universal, {
   target: 'web',
   entry: {
     client: [
-      '@babel/polyfill',
       ...(isDevelop ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'] : []),
       './src/client.js',
     ],
@@ -127,7 +128,7 @@ const client = merge(universal, {
   },
   module: {
     rules: [
-      { test: /\.css$/, use: [Css.loader, 'css-loader'] },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: [
@@ -144,10 +145,11 @@ const client = merge(universal, {
     ],
   },
   plugins: [
+    new Dotenv(),
     ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
     ...(isTesting ? [new BundleAnalyzerPlugin()] : []),
     new Clean('./public', { root: path.resolve(__dirname, './dist') }),
-    new Copy([{ from: './src/assets', to: './' }]),
+    new CopyWebpackPlugin([{ from: './src/assets', to: './' }]),
     new Loadable({ writeToDisk: true }),
   ],
 })

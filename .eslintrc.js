@@ -12,6 +12,7 @@ module.exports = {
     'no-trailing-spaces': 0,
     'padded-blocks': 0,
     'camelcase': 0,
+    'generator-star-spacing': 0,
   },
   'settings': {},
   'globals': {

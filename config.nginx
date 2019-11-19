@@ -1,0 +1,36 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name partymaker.zp.ua;
+    return 301 https://$host$request_uri;
+
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt/;
+        log_not_found off;
+    }
+}
+
+server {
+    listen 443 ssl http2 default_server;
+    listen [::]:443 ssl http2 default_server;
+    server_name partymaker.zp.ua;
+
+    root /home/dev/partymaker-web/dist;
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/api.partymaker.zp.ua/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/api.partymaker.zp.ua/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+    # CSS and Javascript
+    location ~* \.(?:css|js)$ {
+        expires 1y;
+        access_log off;
+        add_header Cache-Control "public";
+    }
+}

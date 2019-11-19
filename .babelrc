@@ -1,15 +1,33 @@
 {
   "presets": [
-    "@babel/preset-react"
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
   ],
   "plugins": [
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "@material-ui/core",
+        "libraryDirectory": "esm",
+        "camel2DashComponentName": false
+      },
+      "core"
+    ],
     [
       "@babel/plugin-proposal-decorators",
       {
         "decoratorsBeforeExport": true
       }
     ],
-    "@loadable/babel-plugin",
+    "lodash",
     "react-hot-loader/babel",
     "transform-class-properties",
     "@babel/plugin-syntax-dynamic-import",

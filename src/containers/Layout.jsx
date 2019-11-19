@@ -1,19 +1,14 @@
-import React, { Component } from 'react'
-import loadable from '@loadable/component'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import EntertainmentsLayout from './@entertainments/EntertainmentsLayout'
+import PlacesLayout from './@places/PlacesLayout'
+import IndexScene from 'containers/IndexScene'
 
-const IndexScene = loadable(() => import('./IndexScene'), { fallback: <div>loading</div> })
-const TestScene = loadable(() => import('./TestScene'), { fallback: <div>loading</div> })
-
-class Layout extends Component {
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={props => <IndexScene {...props} />} />
-        <Route path="/test" component={props => <TestScene {...props} />} />
-      </Switch>
-    )
-  }
-}
+const Layout = () =>
+  <Switch>
+    <Route exact path="/" component={IndexScene} />
+    <Route path="/entertainments" component={EntertainmentsLayout} />
+    <Route path="/places" component={PlacesLayout} />
+  </Switch>
 
 export default Layout
