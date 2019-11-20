@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import init from 'lib/init'
-import theme from './styles/theme'
+import theme from './config/theme'
 import Layout from 'containers/Layout'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import { Provider } from 'react-redux'
