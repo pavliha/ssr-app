@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import EntertainmentsScene from './EntertainmentsScene'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 
 const styles = () => ({})
 

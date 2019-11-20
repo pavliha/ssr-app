@@ -1,15 +1,18 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { ServerStyleSheets } from '@material-ui/styles'
+import { ServerStyleSheets } from '@material-ui/core/styles'
 import { StaticRouter } from 'react-router-dom'
 import { ChunkExtractorManager } from '@loadable/server'
 import Assets from 'lib/Assets'
 import Loadable from 'lib/Loadable'
 import App from './App'
 
-const html = ({ root, assets }) => {
+const createHtml = ({ root, assets }) => {
   const sheets = new ServerStyleSheets()
-  const jsxWithStyles = sheets.collect(root)
+
+  const jsx = sheets.collect(root)
+  const html = renderToString(jsx)
+  const css = sheets.toString()
 
   return `
     <html lang="ru">
@@ -18,17 +21,17 @@ const html = ({ root, assets }) => {
       ${assets.meta}
       ${assets.links}
       ${assets.styles}
-      <style id="jss-server-side">${sheets.toString()}</style>
+      <style id="jss-server-side">${css}</style>
     </head>
     <body>
-       <div id="root">${renderToString(jsxWithStyles)}</div>
+       <div id="root">${html}</div>
        ${assets.scripts} 
     </body>
     </html>
   `
 }
 
-export default () => async (request, response) => {
+const render = async (request, response) => {
   const context = {}
   const loadable = new Loadable('./dist/public/loadable-stats.json')
   const assets = new Assets(loadable)
@@ -41,5 +44,7 @@ export default () => async (request, response) => {
     </ChunkExtractorManager>
   )
 
-  response.send(html({ root, assets }))
+  response.send(createHtml({ root, assets }))
 }
+
+export default () => render

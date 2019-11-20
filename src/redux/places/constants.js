@@ -1,0 +1,7 @@
+export const LOAD_PLACE = 'LOAD_PLACE'
+export const LOAD_PLACE_FULFILLED = 'LOAD_PLACE_FULFILLED'
+
+export const SET_PLACE = 'SET_PLACE'
+export const SET_PLACES = 'SET_PLACES'
+export const REMOVE_PLACE = 'REMOVE_PLACE'
+

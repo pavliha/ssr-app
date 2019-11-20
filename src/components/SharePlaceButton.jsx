@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { object, string } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import ShareIcon from 'mdi-react/ShareVariantIcon'
 import placeShape from 'shapes/place'

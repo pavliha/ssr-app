@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { object, func, bool } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import placeShape from 'shapes/place'
 import { Picture } from 'components'

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { object, string } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 
 const styles = {
   root: {

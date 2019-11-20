@@ -4,10 +4,19 @@ import { BrowserRouter } from 'react-router-dom'
 import { loadableReady } from '@loadable/component'
 import App from './App'
 
-const Client = () =>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+const Client = () => {
+
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) jssStyles.parentNode.removeChild(jssStyles)
+  }, [])
+
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
+}
 
 if (module.hot) {
   render(<Client />, document.getElementById('root'))

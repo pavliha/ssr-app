@@ -1,3 +1,46 @@
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-Bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-BoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Google Sans, Arial, sans-serif';
+    src: url('./fonts/GoogleSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+
 html, body {
     background-position: center;
     background-size: cover;
@@ -10,57 +53,11 @@ html, body {
 a {
     color: inherit;
     text-decoration: none;
-}
-
-a {
     cursor: pointer;
-    text-decoration: none;
-    color: inherit;
 }
 
-
-.flexAround {
+#root {
     display: flex;
-    justify-content: space-around;
-}
-
-.flexEvenly {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.flexBetween {
-    display: flex;
-    justify-content: space-between;
-}
-
-.emoji-mart-bar:last-child {
-    display: none;
-}
-
-.emoji-mart-category .emoji-mart-emoji span:focus {
-    outline: unset;
-}
-
-.emoji-mart .emoji-mart-emoji:focus {
-    outline: unset;
-}
-
-.emoji-mart-category-list li:focus {
-    outline: unset;
-}
-
-
-@keyframes hide {
-    from {
-        opacity: 1;
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0.1;
-    }
+    flex-direction: column;
+    height: 100%;
 }

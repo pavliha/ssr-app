@@ -9,11 +9,6 @@ import { Provider } from 'react-redux'
 import { store } from 'src/redux'
 
 const App = () => {
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) jssStyles.parentNode.removeChild(jssStyles)
-  }, [])
-
   return (
     <ThemeProvider theme={createMuiTheme(theme)}>
       <Provider store={store}>

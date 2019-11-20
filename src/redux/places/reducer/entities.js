@@ -1,21 +1,22 @@
-import { SET_PLACE, SET_PLACES, REMOVE_PLACE } from '../action'
+import * as c from '../constants'
 import arrayToObject from 'utils/arrayToObject'
 
 export default (state = {}, { type, payload }) => {
   switch (type) {
-    case SET_PLACES:
+
+    case c.SET_PLACES:
       return {
         ...state,
-        ...arrayToObject(payload)
+        ...arrayToObject(payload),
       }
 
-    case SET_PLACE:
+    case c.SET_PLACE:
       return {
         ...state,
         [payload.id]: payload,
       }
 
-    case REMOVE_PLACE: {
+    case c.REMOVE_PLACE: {
       const places = { ...state }
       delete places[payload]
 

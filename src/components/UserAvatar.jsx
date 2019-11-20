@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { bool, object, shape, string, func } from 'prop-types'
 import { Avatar } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import classNames from 'classnames'
 import initials from 'name-initials'
 import { PhotosDialog } from 'components'

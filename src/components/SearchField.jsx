@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { object, func, string } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { IconButton, InputBase, Divider, Paper, Typography, ClickAwayListener } from '@material-ui/core'
 import SearchIcon from 'mdi-react/SearchIcon'
 import classNames from 'classnames'

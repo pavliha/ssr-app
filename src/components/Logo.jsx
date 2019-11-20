@@ -1,6 +1,6 @@
 import React from 'react'
 import { object, string } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'

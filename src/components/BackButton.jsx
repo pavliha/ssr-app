@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { object, shape, string, func } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 import ArrowBackIcon from 'mdi-react/ArrowBackIcon'
 import classNames from 'classnames'

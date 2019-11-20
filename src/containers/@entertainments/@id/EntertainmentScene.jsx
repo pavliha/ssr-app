@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { func, object, shape } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
-import { Typography } from '@material-ui/core'
+import { Typography,withStyles } from '@material-ui/core'
 import { entertainmentShape } from 'shapes'
 import { BackButton, Loader, PlacesList } from 'components'
 import { actions, connect, select } from 'src/redux'

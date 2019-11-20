@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import photoShape from 'shapes/photo'
 import classNames from 'classnames'
 

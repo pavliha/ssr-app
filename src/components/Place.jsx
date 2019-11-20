@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import classNames from 'classnames'
 import { node, object, string } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import { PhotosList, PlaceContacts, PlaceStatus, PlaceSubtitle, PlaceHeader } from 'components'
 import { placeShape } from 'shapes'

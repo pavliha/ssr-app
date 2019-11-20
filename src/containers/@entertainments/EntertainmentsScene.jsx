@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { func, object, shape } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { EntertainmentsLoader, SearchField } from 'components'
-import { Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 const styles = theme => ({
 

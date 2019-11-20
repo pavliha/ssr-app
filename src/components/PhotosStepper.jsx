@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { arrayOf, number, object } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import { Button, MobileStepper } from '@material-ui/core'
 import KeyboardArrowLeftIcon from 'mdi-react/KeyboardArrowLeftIcon'
 import KeyboardArrowRightIcon from 'mdi-react/KeyboardArrowRightIcon'

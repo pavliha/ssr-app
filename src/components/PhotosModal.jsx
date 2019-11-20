@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { func, bool, arrayOf, object, number } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import PhotosStepper from 'components/PhotosStepper'
 import photoShape from 'shapes/photo'
 import CloseButton from 'components/CloseButton'

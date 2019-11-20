@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isDevelop, isTesting } = require('./lib/Stage')
-const Loadable = require('@loadable/webpack-plugin')
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const Clean = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -47,6 +47,7 @@ const universal = {
     hints: false,
   },
   optimization: {
+    minimize: false,
     namedModules: true,
     namedChunks: true,
     splitChunks: {
@@ -105,6 +106,7 @@ const server = merge(universal, {
     rules: [
       { test: /\.css$/, loader: 'ignore-loader' },
       { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'ignore-loader' },
+      { test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/, loader: 'ignore-loader' },
     ],
   },
   plugins: [
@@ -142,6 +144,18 @@ const client = merge(universal, {
           },
         ],
       },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -150,7 +164,7 @@ const client = merge(universal, {
     ...(isTesting ? [new BundleAnalyzerPlugin()] : []),
     new Clean('./public', { root: path.resolve(__dirname, './dist') }),
     new CopyWebpackPlugin([{ from: './src/assets', to: './' }]),
-    new Loadable({ writeToDisk: true }),
+    new LoadableWebpackPlugin({ writeToDisk: true }),
   ],
 })
 

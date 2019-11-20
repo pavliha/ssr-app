@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect/lib/index'
+import { createSelector } from 'reselect'
 
 const all = (contacts) =>
   contacts.map(contact => ({
