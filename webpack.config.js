@@ -1,16 +1,16 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
+const Clean = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isDevelop, isTesting } = require('./lib/Stage')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const Clean = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const universal = {
   devtool: false,
