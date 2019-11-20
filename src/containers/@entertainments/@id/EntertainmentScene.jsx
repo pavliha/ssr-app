@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core'
 import { entertainmentShape } from 'shapes'
 import { BackButton, Loader, PlacesList } from 'components'
 import { actions, connect, select } from 'src/redux'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 const styles = (theme) => ({
   root: {
