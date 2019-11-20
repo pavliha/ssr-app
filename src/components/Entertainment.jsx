@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { object, func, string } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { IconButton, Typography } from '@material-ui/core'
 import KeyboardArrowRightIcon from 'mdi-react/ArrowRightIcon'
 import { entertainmentShape } from 'shapes'

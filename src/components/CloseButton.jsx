@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, func, string } from 'prop-types'
-import { IconButton,withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
+import { IconButton } from '@material-ui/core'
 import CloseIcon from 'mdi-react/CloseIcon'
 import classNames from 'classnames'
 
@@ -9,7 +10,7 @@ const styles = theme => ({
     marginRight: 0,
     [theme.breakpoints.up('md')]: {
       marginRight: 5,
-    }
+    },
   },
 })
 
@@ -32,7 +33,7 @@ CloseButton.propTypes = {
 }
 
 CloseButton.defaultProps = {
-  color: 'primary'
+  color: 'primary',
 }
 
 export default withStyles(styles)(CloseButton)

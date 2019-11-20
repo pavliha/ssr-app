@@ -14,6 +14,8 @@ const createHtml = ({ root, assets }) => {
   const html = renderToString(jsx)
   const css = sheets.toString()
 
+  console.log(assets)
+
   return `
     <html lang="ru">
     <head>

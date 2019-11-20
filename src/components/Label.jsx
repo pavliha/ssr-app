@@ -1,7 +1,7 @@
 import React from 'react'
 import { object, string, node, oneOf } from 'prop-types'
 import { Typography } from '@material-ui/core'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import classNames from 'classnames'
 
 const styles = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { func, node, object, string, any } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Typography } from '@material-ui/core'
 import { Loading } from 'components'
 import ErrorIcon from 'mdi-react/ErrorIcon'

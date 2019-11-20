@@ -83,10 +83,6 @@ const universal = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: isDevelop ? 'styles/[name].css' : 'styles/[name].[contenthash].css',
-      chunkFilename: isDevelop ? '[id].css' : '[id].[contenthash].css',
-    }),
     new LodashModuleReplacementPlugin({
       shorthands: true,
     }),
@@ -130,7 +126,11 @@ const client = merge(universal, {
   },
   module: {
     rules: [
-      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
+      {
+        sideEffects: true,
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: [
@@ -160,9 +160,10 @@ const client = merge(universal, {
   },
   plugins: [
     new Dotenv(),
+    new Clean('./public', { root: path.resolve(__dirname, './dist') }),
+    new MiniCssExtractPlugin({ filename: '[name].[hash:3].css', chunkFilename: '[id].[hash:3].css' }),
     ...(isDevelop ? [new webpack.HotModuleReplacementPlugin()] : []),
     ...(isTesting ? [new BundleAnalyzerPlugin()] : []),
-    new Clean('./public', { root: path.resolve(__dirname, './dist') }),
     new CopyWebpackPlugin([{ from: './src/assets', to: './' }]),
     new LoadableWebpackPlugin({ writeToDisk: true }),
   ],

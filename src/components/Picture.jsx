@@ -1,6 +1,6 @@
 import React from 'react'
 import { object, string, func } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import classNames from 'classnames'
 
 const styles = {

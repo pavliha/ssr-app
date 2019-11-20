@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { object, number } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { StatusItem } from 'components'
 import StarIcon from 'mdi-react/StarIcon'
 import { formatCount } from 'utils'

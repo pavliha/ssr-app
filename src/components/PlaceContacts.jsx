@@ -1,6 +1,6 @@
 import React from 'react'
 import { object, string, shape } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { PlaceContact } from 'components'
 import GlobeIcon from 'mdi-react/GlobeIcon'
 import InstagramIcon from 'mdi-react/InstagramIcon'

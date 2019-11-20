@@ -1,6 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { BackButton, PlaceCard, SharePlaceButton } from 'components'
 import placeShape from 'shapes/place'
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { func, object, shape } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { EntertainmentsLoader, SearchField } from 'components'
 import { Helmet } from 'react-helmet'
 

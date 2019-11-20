@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { object, arrayOf, string } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { photoShape } from 'shapes'
 import { PhotosModal } from 'components'
 import classNames from 'classnames'

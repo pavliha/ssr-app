@@ -1,9 +1,9 @@
 import React from 'react'
 import { object, shape, string } from 'prop-types'
 import { Place, PlaceActions, PlaceLoader } from 'components'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import placeShape from 'shapes/place'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { connect, select } from 'src/redux'
 
 const styles = theme => ({

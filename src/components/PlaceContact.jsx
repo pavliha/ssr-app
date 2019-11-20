@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { object, string } from 'prop-types'
-import { withStyles } from '@material-ui/core'
-
+import { withStyles } from '@material-ui/styles'
 const styles = {
   root: {
     display: 'flex',
