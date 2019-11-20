@@ -122,7 +122,7 @@ const client = merge(universal, {
   output: {
     path: path.resolve(__dirname, './dist/public'),
     publicPath: '/',
-    filename: isDevelop ? `[name].js` : `[name].[hash:3].js`,
+    filename: `[name].[hash:3].js`,
   },
   module: {
     rules: [

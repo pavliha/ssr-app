@@ -6,7 +6,7 @@ import Layout from 'containers/Layout'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import { Provider } from 'react-redux'
 import { store } from 'src/redux'
-import 'src/index.css'
+import 'src/styles.css'
 
 const App = () => {
   return (
